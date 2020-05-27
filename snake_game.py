@@ -67,6 +67,19 @@ wn.onkeypress(go_left, "a")
 while True:
     wn.update()
 
+    # check for a wall collision
+    if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction = "stop"
+
+        # hide the segments
+        for s in segments:
+            s.goto(1000, 1000)
+
+        # clear the segments list
+        segments.clear()
+
     # check for a collision with the food
     if head.distance(food) < 20:
         # move the food to a random spot
